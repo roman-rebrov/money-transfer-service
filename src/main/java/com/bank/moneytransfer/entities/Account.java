@@ -6,9 +6,9 @@ import java.util.Optional;
 
 public class Account {
 
-    private static long IDCounter = 1;
+    private static int IDCounter = 1;
 
-    private final long ID;
+    private final int ID;
     private final Map<String, Card> cards = new HashMap<>();
 
     public Account(){
@@ -23,6 +23,10 @@ public class Account {
         }else {
             return false;
         }
+    }
+
+    public Map<String, Card> getCards(){
+        return this.cards;
     }
 
     public Optional<Card> getCard(final String cardNumber) {

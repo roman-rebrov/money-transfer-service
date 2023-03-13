@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class TransferService {
 
     private TransferRepository repository;
+    private String accessCode = "0000";
 
     public TransferMessage postTransfer(Transfer transfer) {
 
@@ -21,6 +22,12 @@ public class TransferService {
     }
 
     public TransferMessage postConfirmOperation (TransferConfirmOperation confirmOperation){
+
+        if (this.accessCode.equals(confirmOperation.getCode())){
+
+        }else {
+
+        }
 
         return null;
     }

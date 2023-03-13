@@ -1,14 +1,12 @@
 package com.bank.moneytransfer.repositories;
 
 import com.bank.moneytransfer.entities.Account;
+import com.bank.moneytransfer.entities.Card;
 import com.bank.moneytransfer.entities.Transaction;
 import com.bank.moneytransfer.utils.AccountFactory;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class TransferRepository {
@@ -28,6 +26,23 @@ public class TransferRepository {
         this.accounts.add(acc1);
         this.accounts.add(acc2);
 
+    }
+
+    public Optional<Card> getCardByNumber (String cardNumber) {
+        for (Account acc : this.accounts){
+            if (acc.cardContains(cardNumber)){
+                return acc.getCard(cardNumber);
+            }
+        }
+
+        return Optional.of(null);
+    }
+
+    public Optional<Transaction> getTransactionByID (int id) {
+        if (this.transactions.containsKey(id)){
+            return Optional.of(this.transactions.get(id));
+        }
+        return Optional.of(null);
     }
 
 
