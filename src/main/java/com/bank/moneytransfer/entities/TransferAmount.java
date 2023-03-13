@@ -1,6 +1,5 @@
 package com.bank.moneytransfer.entities;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
