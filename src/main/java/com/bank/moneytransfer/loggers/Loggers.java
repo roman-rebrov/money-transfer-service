@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 public class Loggers {
 
-    public Logger getLogger() {
+    public static Logger getLogger() {
 
         return new Logger() {
 
@@ -24,7 +24,7 @@ public class Loggers {
 
                     writer.append(log);
                     return true;
-                    
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
