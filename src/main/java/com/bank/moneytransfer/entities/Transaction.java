@@ -1,7 +1,6 @@
 package com.bank.moneytransfer.entities;
 
 
-
 import com.bank.moneytransfer.utils.DateTime;
 
 public class Transaction {
@@ -16,6 +15,7 @@ public class Transaction {
     private final String currency;
     private final int amount;
     private final int commission;
+    private boolean transfer = false;
 
 
 
@@ -46,5 +46,13 @@ public class Transaction {
 
     public String getCardToNumber() {
         return cardToNumber;
+    }
+
+    public void successfulTransfer(){
+        this.transfer = true;
+    }
+
+    public boolean isTransfer() {
+        return transfer;
     }
 }

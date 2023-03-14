@@ -2,7 +2,7 @@ package com.bank.moneytransfer.entities;
 
 public class TransferErrorMessage {
     private String message;
-    private int di;
+    private int id;
 
     public String getMessage() {
         return message;
@@ -12,11 +12,11 @@ public class TransferErrorMessage {
         this.message = message;
     }
 
-    public int getDi() {
-        return di;
+    public int getID() {
+        return id;
     }
 
-    public void setDi(int di) {
-        this.di = di;
+    public void setID(int id) {
+        this.id = id;
     }
 }
