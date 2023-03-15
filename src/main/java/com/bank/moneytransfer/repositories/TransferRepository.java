@@ -28,6 +28,10 @@ public class TransferRepository {
 
     }
 
+    public void addTransaction (Transaction transaction){
+        this.transactions.put(transaction.getID(), transaction);
+    }
+
     public Optional<Card> getCardByNumber (String cardNumber) {
         for (Account acc : this.accounts){
             if (acc.cardContains(cardNumber)){
