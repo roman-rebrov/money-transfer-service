@@ -1,25 +1,13 @@
 package com.bank.moneytransfer.entities;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 
 public class Transfer {
 
 
-    @NotBlank
-    @Min(16)
-    @Max(16)
     private String cardFromNumber;
-    @Min(3)
     private String cardFromCVV;
-    @NotBlank
-    @Min(5)
     private String cardFromValidTill;
 
-    @NotBlank
-    @Min(16)
-    @Max(16)
     private String cardToNumber;
 
     private TransferAmount amount;

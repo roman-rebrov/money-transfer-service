@@ -1,15 +1,13 @@
 package com.bank.moneytransfer.entities;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
+
 
 public class TransferConfirmOperation {
 
-    @NotBlank
+
     private String operationId;
 
-    @NotBlank
-    @Max(4)
+
     private String code;
 
     public String getOperationId() {
