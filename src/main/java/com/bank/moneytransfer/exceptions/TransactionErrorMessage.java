@@ -1,6 +1,6 @@
-package com.bank.moneytransfer.entities;
+package com.bank.moneytransfer.exceptions;
 
-public class TransferErrorMessage {
+public class TransactionErrorMessage {
     private String message;
     private int id;
 
