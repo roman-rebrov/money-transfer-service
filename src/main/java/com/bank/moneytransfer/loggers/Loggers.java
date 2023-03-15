@@ -1,5 +1,7 @@
 package com.bank.moneytransfer.loggers;
 
+import com.bank.moneytransfer.utils.DateTime;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,7 +24,13 @@ public class Loggers {
                         PrintWriter writer = new PrintWriter(new FileWriter(file, true));
                 ) {
 
-                    writer.append(log);
+                    final StringBuilder logBuilder = new StringBuilder("[ ");
+                    logBuilder.append(DateTime.getDate() + " ");
+                    logBuilder.append(DateTime.getTime() + " == ");
+                    logBuilder.append(log);
+                    logBuilder.append(" ]\r\n");
+
+                    writer.append(logBuilder.toString());
                     return true;
 
                 } catch (IOException e) {
