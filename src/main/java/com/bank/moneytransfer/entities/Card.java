@@ -10,6 +10,20 @@ public class Card {
     private String currency;
     private int value;
 
+    public int putMoney(int sum){
+        this.value = this.value + sum;
+        return sum;
+    }
+
+    public int withdrawMoney(int sum){
+        this.value = this.value - sum;
+        return sum;
+    }
+
+    public boolean isAmount(int sum){
+        return this.value >= sum;
+    }
+
     public String getCardNumber() {
         return cardNumber;
     }

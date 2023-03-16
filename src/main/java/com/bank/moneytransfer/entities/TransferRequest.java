@@ -1,7 +1,7 @@
 package com.bank.moneytransfer.entities;
 
 
-public class Transfer {
+public class TransferRequest {
 
 
     private String cardFromNumber;

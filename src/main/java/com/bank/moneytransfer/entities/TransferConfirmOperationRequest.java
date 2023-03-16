@@ -2,7 +2,7 @@ package com.bank.moneytransfer.entities;
 
 
 
-public class TransferConfirmOperation {
+public class TransferConfirmOperationRequest {
 
 
     private String operationId;

@@ -23,6 +23,7 @@ public class AccountFactory {
         newCard.setCardCVV(cardCVV);
         newCard.setCardValidTill(cardValidTill);
         newCard.setCurrency(currency);
+        newCard.setValue(value);
 
         final Account newAccount = new Account();
         newAccount.addNewCard(newCard);

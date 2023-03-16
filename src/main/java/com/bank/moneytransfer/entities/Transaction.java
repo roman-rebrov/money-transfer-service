@@ -55,4 +55,13 @@ public class Transaction {
     public boolean isTransfer() {
         return transfer;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getCommission() {
+        return commission;
+    }
+
 }

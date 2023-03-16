@@ -1,14 +1,11 @@
 package com.bank.moneytransfer.entities;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+
 
 public class TransferAmount {
-    @NotBlank
-    @Min(3)
+
     private String currency;
-    @NotBlank
-    @Min(1)
+
     private int value;
 
     public String getCurrency() {
