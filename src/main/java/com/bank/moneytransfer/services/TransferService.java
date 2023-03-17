@@ -21,13 +21,15 @@ public class TransferService {
 
     private final Logger logger;
 
+    private String loggerPath = "transactionLoggers.txt";
+
     private final String accessCode = "0000";
 
 
     public TransferService(TransferRepository repository) {
         this.repository = repository;
         this.logger = Loggers.getLogger();
-        this.logger.setPath("transactionLoggers.txt");
+        this.logger.setPath(this.loggerPath);
     }
 
 
@@ -184,6 +186,10 @@ public class TransferService {
             throw new TransactionConfirmOperationException(0, "Incorrect access code");
         }
 
+    }
+
+    public void setLoggerPath(String loggerPath){
+        this.logger.setPath(loggerPath);
     }
 
 }

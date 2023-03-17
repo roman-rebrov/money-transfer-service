@@ -49,5 +49,13 @@ public class TransferRepository {
         return Optional.of(null);
     }
 
+    public boolean addAccount(Account newAccount){
+        if (newAccount != null) {
+            this.accounts.add(newAccount);
+            return true;
+        }
+        return false;
+    }
+
 
 }
