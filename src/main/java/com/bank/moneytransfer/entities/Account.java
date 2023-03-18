@@ -39,4 +39,8 @@ public class Account {
     public boolean cardContains(String cardNumber){
         return this.cards.containsKey(cardNumber);
     }
+
+    public int getID() {
+        return ID;
+    }
 }

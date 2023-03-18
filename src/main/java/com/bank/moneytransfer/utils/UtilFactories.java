@@ -2,8 +2,10 @@ package com.bank.moneytransfer.utils;
 
 import com.bank.moneytransfer.entities.Account;
 import com.bank.moneytransfer.entities.Card;
+import com.bank.moneytransfer.entities.Transaction;
+import com.bank.moneytransfer.entities.TransferRequest;
 
-public class AccountFactory {
+public class UtilFactories {
 
     public static Account createAccount() {
         final Account newAccount = new Account();
@@ -29,5 +31,15 @@ public class AccountFactory {
         newAccount.addNewCard(newCard);
 
         return newAccount;
+    }
+
+    public static Transaction createTransaction(TransferRequest transfer) {
+        return new Transaction(
+                transfer.getCardFromNumber(),
+                transfer.getCardToNumber(),
+                transfer.getAmount().getCurrency(),
+                transfer.getAmount().getValue(),
+                CurrencyOperations.calculateCommission(transfer.getAmount().getValue())
+        );
     }
 }

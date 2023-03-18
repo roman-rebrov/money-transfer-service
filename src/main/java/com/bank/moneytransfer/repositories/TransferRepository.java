@@ -3,7 +3,7 @@ package com.bank.moneytransfer.repositories;
 import com.bank.moneytransfer.entities.Account;
 import com.bank.moneytransfer.entities.Card;
 import com.bank.moneytransfer.entities.Transaction;
-import com.bank.moneytransfer.utils.AccountFactory;
+import com.bank.moneytransfer.utils.UtilFactories;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -16,10 +16,10 @@ public class TransferRepository {
 
     public TransferRepository(){
 
-        final Account acc1 = AccountFactory.createAccountWithCard(
+        final Account acc1 = UtilFactories.createAccountWithCard(
                 "2585541741745566", "850", "12/27", "RUR", 8940000
         );
-        final Account acc2 = AccountFactory.createAccountWithCard(
+        final Account acc2 = UtilFactories.createAccountWithCard(
                 "3754567210826497", "113", "10/29", "RUR", 556300
         );
 
@@ -39,14 +39,14 @@ public class TransferRepository {
             }
         }
 
-        return Optional.of(null);
+        return Optional.ofNullable(null);
     }
 
     public Optional<Transaction> getTransactionByID (int id) {
         if (this.transactions.containsKey(id)){
             return Optional.of(this.transactions.get(id));
         }
-        return Optional.of(null);
+        return Optional.ofNullable(null);
     }
 
     public boolean addAccount(Account newAccount){

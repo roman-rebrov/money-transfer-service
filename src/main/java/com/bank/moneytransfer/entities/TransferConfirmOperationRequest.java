@@ -7,8 +7,8 @@ public class TransferConfirmOperationRequest {
 
     private String operationId;
 
-
     private String code;
+
 
     public String getOperationId() {
         return operationId;

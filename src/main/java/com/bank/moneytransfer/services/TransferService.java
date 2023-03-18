@@ -8,6 +8,7 @@ import com.bank.moneytransfer.loggers.Logger;
 import com.bank.moneytransfer.loggers.Loggers;
 import com.bank.moneytransfer.repositories.TransferRepository;
 import com.bank.moneytransfer.utils.CurrencyOperations;
+import com.bank.moneytransfer.utils.UtilFactories;
 import com.bank.moneytransfer.utils.Validations;
 import org.springframework.stereotype.Service;
 
@@ -33,16 +34,6 @@ public class TransferService {
     }
 
 
-
-    private Transaction createTransaction(TransferRequest transfer){
-        return new Transaction(
-                transfer.getCardFromNumber(),
-                transfer.getCardToNumber(),
-                transfer.getAmount().getCurrency(),
-                transfer.getAmount().getValue(),
-                CurrencyOperations.calculateCommission(transfer.getAmount().getValue())
-        );
-    }
 
     private boolean verifyCardData(TransferRequest transfer, Card card){
 
@@ -92,7 +83,7 @@ public class TransferService {
         public TransferMessage postTransfer(TransferRequest transfer) {
 
         // create Transaction
-        final Transaction newTransaction = this.createTransaction(transfer);
+        final Transaction newTransaction = UtilFactories.createTransaction(transfer);
         this.repository.addTransaction(newTransaction);
 
 
