@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
+/**
+ *
+ */
 public class Loggers {
 
     public static Logger getLogger() {
@@ -15,6 +19,11 @@ public class Loggers {
 
             private File file;
 
+            /**
+             *
+             * @param log
+             * @return
+             */
             @Override
             public boolean write(String log) {
                 if (file == null) {

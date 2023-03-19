@@ -38,7 +38,7 @@ public class Advice {
         System.out.println(ex.getMessage() + " transactionID: " + ex.getTransactionID());
 
         final TransactionErrorMessage message = new TransactionErrorMessage();
-        message.setMessage("SERVER_ERROR");
+        message.setMessage(ex.getMessage());
         message.setID(ex.getTransactionID());
 
         return new ResponseEntity<TransactionErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
