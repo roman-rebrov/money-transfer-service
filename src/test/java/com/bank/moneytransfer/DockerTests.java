@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -38,6 +39,7 @@ public class DockerTests {
         System.out.println("response:  " + entity.getBody());
 
         Assertions.assertEquals("{\"operationId\":\"1\"}", entity.getBody());
+        Assertions.assertEquals(HttpStatusCode.valueOf(200), entity.getStatusCode());
     }
 
     private TransferRequest createTransferRequest(){
