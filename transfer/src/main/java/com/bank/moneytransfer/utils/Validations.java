@@ -1,7 +1,7 @@
 package com.bank.moneytransfer.utils;
 
-import com.bank.moneytransfer.entities.TransferRequest;
-import com.bank.moneytransfer.entities.TransferConfirmOperationRequest;
+import com.bank.moneytransfer.entitie.TransferRequest;
+import com.bank.moneytransfer.entitie.TransferConfirmOperationRequest;
 
 public class Validations {
 
@@ -10,25 +10,25 @@ public class Validations {
         if (transfer == null) {
             return false;
         }
-        if ( transfer.getCardFromNumber() == null || !(transfer.getCardFromNumber().length() == 16)){
+        if (transfer.getCardFromNumber() == null || !(transfer.getCardFromNumber().length() == 16)) {
             return false;
         }
-        if ( transfer.getCardToNumber() == null || !(transfer.getCardToNumber().length() == 16)){
+        if (transfer.getCardToNumber() == null || !(transfer.getCardToNumber().length() == 16)) {
             return false;
         }
-        if (transfer.getCardFromCVV() == null || !(transfer.getCardFromCVV().length() == 3)){
+        if (transfer.getCardFromCVV() == null || !(transfer.getCardFromCVV().length() == 3)) {
             return false;
         }
-        if (transfer.getCardFromValidTill() == null || !(transfer.getCardFromValidTill().length() == 5)){
+        if (transfer.getCardFromValidTill() == null || !(transfer.getCardFromValidTill().length() == 5)) {
             return false;
         }
         if (transfer.getAmount() == null) {
             return false;
         }
-        if (transfer.getAmount().getCurrency() == null || !(transfer.getAmount().getCurrency().length() == 3)){
+        if (transfer.getAmount().getCurrency() == null || !(transfer.getAmount().getCurrency().length() == 3)) {
             return false;
         }
-        if (transfer.getAmount().getValue() < 1){
+        if (transfer.getAmount().getValue() < 1) {
             return false;
         }
         return true;

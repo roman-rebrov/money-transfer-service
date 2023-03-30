@@ -1,7 +1,7 @@
 package com.bank.moneytransfer;
 
-import com.bank.moneytransfer.entities.TransferAmount;
-import com.bank.moneytransfer.entities.TransferRequest;
+import com.bank.moneytransfer.entitie.TransferAmount;
+import com.bank.moneytransfer.entitie.TransferRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class DockerTests {
             .withExposedPorts(5500);
 
     @Test
-    public void transferDockerTest(){
+    public void transferDockerTest() {
 
         final TransferRequest request = this.createTransferRequest();
         final int transferAppPort = appTest.getMappedPort(5500);
@@ -42,7 +42,7 @@ public class DockerTests {
         Assertions.assertEquals(HttpStatusCode.valueOf(200), entity.getStatusCode());
     }
 
-    private TransferRequest createTransferRequest(){
+    private TransferRequest createTransferRequest() {
         final TransferRequest transfer = new TransferRequest();
         final TransferAmount amount = new TransferAmount();
 

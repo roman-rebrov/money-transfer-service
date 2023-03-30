@@ -1,0 +1,4 @@
+[ 23-03-30 20:23 == card From: 2585541741745566, card To: 3754567210826497, amount: 200, commission: 2, operation: successful transaction ]
+[ 23-03-30 20:23 == card From: 2585541741745566, card To: 3754567210826497, amount: 200, commission: 2, operation: successful transaction ]
+[ 23-03-30 20:23 == card From: 2585541741745566, card To: 3754567210826497, amount: 200, commission: 2, operation: successful transaction ]
+[ 23-03-30 20:23 == card From: 2585541741745566, card To: 3754567210826497, amount: 200, commission: 2, operation: successful transaction ]

@@ -11,7 +11,7 @@ public class DateTimeTests {
 
     @Test
     @DisplayName("Date test")
-    public void dateTest(){
+    public void dateTest() {
 
         String date = DateTimeFormatter.ofPattern("YY-MM-dd").format(LocalDateTime.now());
         String dateResult = DateTime.getDate();
@@ -21,7 +21,7 @@ public class DateTimeTests {
 
     @Test
     @DisplayName("Time test")
-    public void timeTest(){
+    public void timeTest() {
 
         String time = DateTimeFormatter.ofPattern("HH:mm").format(LocalDateTime.now());
         String timeResult = DateTime.getTime();

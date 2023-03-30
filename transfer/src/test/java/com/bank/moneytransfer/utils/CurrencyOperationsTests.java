@@ -8,7 +8,7 @@ public class CurrencyOperationsTests {
 
     @Test
     @DisplayName("calculateCommission test")
-    public void calculateCommissionTest(){
+    public void calculateCommissionTest() {
 
         final int sum = 100;
         final int expectResult = (sum / 100) * CurrencyOperations.getCommissionPercentage();

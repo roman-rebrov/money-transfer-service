@@ -1,8 +1,8 @@
 package com.bank.moneytransfer.utils;
 
-import com.bank.moneytransfer.entities.TransferAmount;
-import com.bank.moneytransfer.entities.TransferConfirmOperationRequest;
-import com.bank.moneytransfer.entities.TransferRequest;
+import com.bank.moneytransfer.entitie.TransferAmount;
+import com.bank.moneytransfer.entitie.TransferConfirmOperationRequest;
+import com.bank.moneytransfer.entitie.TransferRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 public class ValidationsTests {
 
 
-    public TransferConfirmOperationRequest createConfirmOperationRequest(){
+    public TransferConfirmOperationRequest createConfirmOperationRequest() {
 
         final TransferConfirmOperationRequest confirmOperationRequest = Mockito.mock(TransferConfirmOperationRequest.class);
 
@@ -24,7 +24,7 @@ public class ValidationsTests {
 
     }
 
-    public TransferRequest createTransferRequest(){
+    public TransferRequest createTransferRequest() {
         final TransferRequest request = Mockito.mock(TransferRequest.class);
         final TransferAmount amount = Mockito.mock(TransferAmount.class);
 
@@ -44,7 +44,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("transferRequestValidTest")
-    public void transferRequestValidTest(){
+    public void transferRequestValidTest() {
         final TransferRequest request = this.createTransferRequest();
 
         final boolean result = Validations.transferRequestValid(request);
@@ -54,7 +54,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("NoValidCardToNumberTest")
-    public void NoValidCardToNumberTest(){
+    public void NoValidCardToNumberTest() {
 
         final TransferRequest request = this.createTransferRequest();
 
@@ -66,7 +66,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("NoValidCardFromNumberTest")
-    public void NoValidCardFromNumberTest(){
+    public void NoValidCardFromNumberTest() {
 
         final TransferRequest request = this.createTransferRequest();
 
@@ -78,7 +78,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("NoValidCardFromCVVTest")
-    public void NoValidCardFromCVVTest(){
+    public void NoValidCardFromCVVTest() {
 
         final TransferRequest request = this.createTransferRequest();
 
@@ -90,7 +90,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("NoValidCardFromValidTillTest")
-    public void NoValidCardFromValidTillTest(){
+    public void NoValidCardFromValidTillTest() {
 
         final TransferRequest request = this.createTransferRequest();
 
@@ -102,7 +102,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("NoValidRequestAmountTest")
-    public void NoValidRequestAmountTest(){
+    public void NoValidRequestAmountTest() {
 
         final TransferRequest request = this.createTransferRequest();
 
@@ -118,7 +118,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("confirmRequestValidationTest")
-    public void confirmRequestValidationTest(){
+    public void confirmRequestValidationTest() {
 
         final TransferConfirmOperationRequest request = this.createConfirmOperationRequest();
 
@@ -129,7 +129,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("noValidCodeConfirmRequestTest")
-    public void noValidCodeConfirmRequestTest(){
+    public void noValidCodeConfirmRequestTest() {
 
         final TransferConfirmOperationRequest request = this.createConfirmOperationRequest();
 
@@ -141,7 +141,7 @@ public class ValidationsTests {
 
     @Test
     @DisplayName("noValidIDConfirmRequestTest")
-    public void noValidIDConfirmRequestTest(){
+    public void noValidIDConfirmRequestTest() {
 
         final TransferConfirmOperationRequest request = this.createConfirmOperationRequest();
 

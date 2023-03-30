@@ -8,7 +8,7 @@ public class CurrencyOperations {
         return (sum / 100) * commissionPercentage;
     }
 
-    public static int getCommissionPercentage(){
+    public static int getCommissionPercentage() {
         return commissionPercentage;
     }
 }
