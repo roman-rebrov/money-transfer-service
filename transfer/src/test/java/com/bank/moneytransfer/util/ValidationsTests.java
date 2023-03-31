@@ -1,8 +1,8 @@
-package com.bank.moneytransfer.utils;
+package com.bank.moneytransfer.util;
 
-import com.bank.moneytransfer.entitie.TransferAmount;
-import com.bank.moneytransfer.entitie.TransferConfirmOperationRequest;
-import com.bank.moneytransfer.entitie.TransferRequest;
+import com.bank.moneytransfer.entity.TransferAmount;
+import com.bank.moneytransfer.entity.TransferConfirmOperationRequest;
+import com.bank.moneytransfer.entity.TransferRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

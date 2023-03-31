@@ -1,4 +1,4 @@
-package com.bank.moneytransfer.entitie;
+package com.bank.moneytransfer.entity;
 
 
 public class TransferAmount {

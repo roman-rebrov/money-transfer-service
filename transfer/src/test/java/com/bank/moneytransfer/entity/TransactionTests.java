@@ -1,4 +1,4 @@
-package com.bank.moneytransfer.entitie;
+package com.bank.moneytransfer.entity;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

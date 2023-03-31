@@ -1,8 +1,8 @@
 package com.bank.moneytransfer.repository;
 
-import com.bank.moneytransfer.entitie.Account;
-import com.bank.moneytransfer.entitie.Card;
-import com.bank.moneytransfer.entitie.Transaction;
+import com.bank.moneytransfer.entity.Account;
+import com.bank.moneytransfer.entity.Card;
+import com.bank.moneytransfer.entity.Transaction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

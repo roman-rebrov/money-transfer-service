@@ -1,7 +1,7 @@
-package com.bank.moneytransfer.entitie;
+package com.bank.moneytransfer.entity;
 
 
-import com.bank.moneytransfer.utils.DateTime;
+import com.bank.moneytransfer.util.DateTime;
 
 public class Transaction {
 

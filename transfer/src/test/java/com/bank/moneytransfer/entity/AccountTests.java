@@ -1,6 +1,6 @@
-package com.bank.moneytransfer.entitie;
+package com.bank.moneytransfer.entity;
 
-import com.bank.moneytransfer.utils.UtilFactories;
+import com.bank.moneytransfer.util.UtilFactories;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

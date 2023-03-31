@@ -1,9 +1,9 @@
-package com.bank.moneytransfer.utils;
+package com.bank.moneytransfer.util;
 
-import com.bank.moneytransfer.entitie.Account;
-import com.bank.moneytransfer.entitie.Card;
-import com.bank.moneytransfer.entitie.Transaction;
-import com.bank.moneytransfer.entitie.TransferRequest;
+import com.bank.moneytransfer.entity.Account;
+import com.bank.moneytransfer.entity.Card;
+import com.bank.moneytransfer.entity.Transaction;
+import com.bank.moneytransfer.entity.TransferRequest;
 
 public class UtilFactories {
 

@@ -1,7 +1,7 @@
 package com.bank.moneytransfer;
 
-import com.bank.moneytransfer.entitie.TransferAmount;
-import com.bank.moneytransfer.entitie.TransferRequest;
+import com.bank.moneytransfer.entity.TransferAmount;
+import com.bank.moneytransfer.entity.TransferRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

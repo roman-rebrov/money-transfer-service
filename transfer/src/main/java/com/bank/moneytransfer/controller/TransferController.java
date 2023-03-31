@@ -1,14 +1,13 @@
 package com.bank.moneytransfer.controller;
 
-import com.bank.moneytransfer.entitie.TransferRequest;
-import com.bank.moneytransfer.entitie.TransferConfirmOperationRequest;
-import com.bank.moneytransfer.entitie.TransferMessage;
+import com.bank.moneytransfer.entity.TransferRequest;
+import com.bank.moneytransfer.entity.TransferConfirmOperationRequest;
 import com.bank.moneytransfer.service.TransferService;
 import com.bank.moneytransfer.service.TransferServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "${client.url}")
 @RestController
 @RequestMapping("/")
 public class TransferController {

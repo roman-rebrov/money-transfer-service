@@ -1,6 +1,6 @@
 package com.bank.moneytransfer.service;
 
-import com.bank.moneytransfer.entitie.*;
+import com.bank.moneytransfer.entity.*;
 import com.bank.moneytransfer.exception.InputDataException;
 import com.bank.moneytransfer.exception.TransactionConfirmOperationException;
 import com.bank.moneytransfer.exception.TransactionException;
@@ -8,15 +8,16 @@ import com.bank.moneytransfer.logger.Logger;
 import com.bank.moneytransfer.logger.Loggers;
 import com.bank.moneytransfer.repository.TransferRepository;
 import com.bank.moneytransfer.repository.TransferRepositoryImpl;
-import com.bank.moneytransfer.utils.CurrencyOperations;
-import com.bank.moneytransfer.utils.UtilFactories;
-import com.bank.moneytransfer.utils.Validations;
+import com.bank.moneytransfer.util.CurrencyOperations;
+import com.bank.moneytransfer.util.UtilFactories;
+import com.bank.moneytransfer.util.Validations;
+import com.bank.moneytransfer.util.Verifications;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class TransferServiceImpl implements TransferService{
+public class TransferServiceImpl implements TransferService {
 
     private final TransferRepository repository;
 
@@ -34,52 +35,6 @@ public class TransferServiceImpl implements TransferService{
     }
 
 
-    private boolean verifyCardData(TransferRequest transfer, Card card) {
-
-        if (transfer == null || card == null) {
-            return false;
-        }
-
-        final String cardNumber = transfer.getCardFromNumber();
-
-        if (!card.getCardNumber().equals(cardNumber)) {
-            return false;
-        }
-
-        final String validTill = transfer.getCardFromValidTill();
-
-        if (!card.getCardValidTill().equals(validTill)) {
-            return false;
-        }
-
-        final String cvv = transfer.getCardFromCVV();
-
-        if (!card.getCardCVV().equals(cvv)) {
-            return false;
-        }
-
-        return true;
-    }
-
-
-    private void createLogging(Transaction transaction) {
-
-        final StringBuilder builder = new StringBuilder();
-        builder.append("card From: " + transaction.getCardFromNumber() + ", ");
-        builder.append("card To: " + transaction.getCardToNumber() + ", ");
-        builder.append("amount: " + transaction.getAmount() + ", ");
-        builder.append("commission: " + transaction.getCommission() + ", ");
-
-        if (transaction.isTransfer()) {
-            builder.append("operation: successful transaction");
-        } else {
-            builder.append("operation: failed transaction");
-        }
-
-        this.logger.write(builder.toString());
-
-    }
-
     @Override
     public TransferMessage postTransfer(TransferRequest transfer) {
 
@@ -90,7 +45,7 @@ public class TransferServiceImpl implements TransferService{
 
         // Validation transfer object
         if (!Validations.transferRequestValid(transfer)) {
-            this.createLogging(newTransaction);
+            this.logger.log(newTransaction);
             throw new InputDataException(newTransaction.getID(), "Incorrect enter data");
         }
 
@@ -100,7 +55,7 @@ public class TransferServiceImpl implements TransferService{
 
         // Check cards
         if (cardFrom.isEmpty() || cardTo.isEmpty()) {
-            this.createLogging(newTransaction);
+            this.logger.log(newTransaction);
             throw new TransactionException(newTransaction.getID(), "Any cord is not exist");
         }
 
@@ -108,7 +63,7 @@ public class TransferServiceImpl implements TransferService{
         final Card to = cardTo.get();
 
         // verify data
-        final boolean verify = this.verifyCardData(transfer, from);
+        final boolean verify = Verifications.cardVerify(transfer, from);
 
         if (!verify) {
             throw new TransactionException(newTransaction.getID(), "Incorrect card data");
@@ -117,7 +72,7 @@ public class TransferServiceImpl implements TransferService{
         // Check amount of the card
         final int transferAmount = newTransaction.getAmount();
         if (!from.isAmount(transferAmount + newTransaction.getCommission())) {
-            this.createLogging(newTransaction);
+            this.logger.log(newTransaction);
             throw new TransactionException(newTransaction.getID(), "this amount is missing on the card");
         }
 
@@ -131,7 +86,7 @@ public class TransferServiceImpl implements TransferService{
         newTransaction.successfulTransfer();
 
         // Logging
-        this.createLogging(newTransaction);
+        this.logger.log(newTransaction);
 
         // create response message
         final TransferMessage transferMessage = new TransferMessage();

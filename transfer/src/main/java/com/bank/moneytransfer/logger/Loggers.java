@@ -1,6 +1,7 @@
 package com.bank.moneytransfer.logger;
 
-import com.bank.moneytransfer.utils.DateTime;
+import com.bank.moneytransfer.entity.Transaction;
+import com.bank.moneytransfer.util.DateTime;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -44,6 +45,24 @@ public class Loggers {
             @Override
             public void setPath(String path) {
                 this.file = new File(path);
+            }
+
+            @Override
+            public void log(Transaction transaction) {
+                final StringBuilder builder = new StringBuilder();
+                builder.append("card From: " + transaction.getCardFromNumber() + ", ");
+                builder.append("card To: " + transaction.getCardToNumber() + ", ");
+                builder.append("amount: " + transaction.getAmount() + ", ");
+                builder.append("commission: " + transaction.getCommission() + ", ");
+
+                if (transaction.isTransfer()) {
+                    builder.append("operation: successful transaction");
+                } else {
+                    builder.append("operation: failed transaction");
+                }
+
+                this.write(builder.toString());
+
             }
         };
     }

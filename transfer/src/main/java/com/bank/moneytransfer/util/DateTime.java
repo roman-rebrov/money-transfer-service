@@ -1,4 +1,4 @@
-package com.bank.moneytransfer.utils;
+package com.bank.moneytransfer.util;
 
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.bank.moneytransfer.service;
 
-import com.bank.moneytransfer.entitie.*;
+import com.bank.moneytransfer.entity.*;
 import com.bank.moneytransfer.repository.TransferRepositoryImpl;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
