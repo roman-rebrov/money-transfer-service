@@ -9,7 +9,7 @@ import java.io.File;
 
 public class LoggerTests {
 
-    private final File file = new File("test.txt");
+    private final File file = new File(Loggers.TEST_PATH);
 
 
     @AfterEach

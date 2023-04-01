@@ -20,18 +20,14 @@ import java.util.Optional;
 public class TransferServiceImpl implements TransferService {
 
     private final TransferRepository repository;
-
     private final Logger logger;
-
-    private String loggerPath = "transactionLoggers.txt";
-
-    private final String accessCode = "0000";
+    private final String ACCESS_CODE = "0000";
 
 
     public TransferServiceImpl(TransferRepositoryImpl repository) {
         this.repository = repository;
         this.logger = Loggers.getLogger();
-        this.logger.setPath(this.loggerPath);
+        this.logger.setPath(Loggers.LOGGER_PATH);
     }
 
 
@@ -105,7 +101,7 @@ public class TransferServiceImpl implements TransferService {
         }
 
         // Check access code
-        if (this.accessCode.equals(confirmOperation.getCode())) {
+        if (this.ACCESS_CODE.equals(confirmOperation.getCode())) {
 
             try {
                 final int operationID = Integer.parseInt(confirmOperation.getOperationId());
@@ -136,8 +132,8 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public void setLoggerPath(String loggerPath) {
-        this.logger.setPath(loggerPath);
+    public void setLOGGER_PATH(String LOGGER_PATH) {
+        this.logger.setPath(LOGGER_PATH);
     }
 
 }

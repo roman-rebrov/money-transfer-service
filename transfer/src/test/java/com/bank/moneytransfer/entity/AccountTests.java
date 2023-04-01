@@ -54,12 +54,4 @@ public class AccountTests {
         Assertions.assertEquals(this.card, card1);
     }
 
-    @Test
-    @DisplayName("cardLengthTest")
-    public void cardLengthTest() {
-
-        final int length = this.account.getCards().size();
-
-        Assertions.assertEquals(1, length);
-    }
 }

@@ -7,5 +7,5 @@ import com.bank.moneytransfer.entity.TransferRequest;
 public interface TransferService {
     TransferMessage postTransfer(TransferRequest transfer);
     TransferMessage postConfirmOperation(TransferConfirmOperationRequest confirmOperation);
-    void setLoggerPath(String loggerPath);
+    void setLOGGER_PATH(String LOGGER_PATH);
 }

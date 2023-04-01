@@ -58,7 +58,7 @@ public class TransferServiceTests {
 
         final TransferRepositoryImpl repository = Mockito.mock(TransferRepositoryImpl.class);
         this.service = new TransferServiceImpl(repository);
-        this.service.setLoggerPath(this.loggerFile.getPath());
+        this.service.setLOGGER_PATH(this.loggerFile.getPath());
 
         final Transaction newTransaction = Mockito.mock(Transaction.class);
         Mockito.when(newTransaction.getID()).thenReturn(1);

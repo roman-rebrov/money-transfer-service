@@ -7,12 +7,13 @@ import com.bank.moneytransfer.util.UtilFactories;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class TransferRepositoryImpl implements TransferRepository {
 
-    private final Map<Integer, Transaction> transactions = new HashMap<>();
-    private final List<Account> accounts = new ArrayList<>();
+    private final Map<Integer, Transaction> transactions = new ConcurrentHashMap<>();
+    private final Map<String, Account> accounts = new ConcurrentHashMap<>();
 
     public TransferRepositoryImpl() {
 
@@ -23,8 +24,8 @@ public class TransferRepositoryImpl implements TransferRepository {
                 "3754567210826497", "113", "10/29", "RUR", 556300
         );
 
-        this.accounts.add(acc1);
-        this.accounts.add(acc2);
+        this.accounts.put(acc1.getCard().getCardNumber(), acc1);
+        this.accounts.put(acc2.getCard().getCardNumber(), acc2);
 
     }
 
@@ -35,11 +36,9 @@ public class TransferRepositoryImpl implements TransferRepository {
 
     @Override
     public Optional<Card> getCardByNumber(String cardNumber) {
-        for (Account acc : this.accounts) {
-            if (acc.cardContains(cardNumber)) {
-                return acc.getCard(cardNumber);
+            if (this.accounts.containsKey(cardNumber)) {
+                return Optional.of(this.accounts.get(cardNumber).getCard());
             }
-        }
 
         return Optional.ofNullable(null);
     }
@@ -53,13 +52,12 @@ public class TransferRepositoryImpl implements TransferRepository {
     }
 
     @Override
-    public boolean addAccount(Account newAccount) {
+    public synchronized boolean addAccount(Account newAccount) {
         if (newAccount != null) {
-            this.accounts.add(newAccount);
+            this.accounts.put(newAccount.getCard().getCardNumber(), newAccount);
             return true;
         }
         return false;
     }
-
 
 }
