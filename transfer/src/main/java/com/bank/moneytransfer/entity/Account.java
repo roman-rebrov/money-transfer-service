@@ -14,8 +14,8 @@ public class Account {
     }
 
     public boolean addNewCard(Card newCard) {
-            this.card = newCard;
-            return true;
+        this.card = newCard;
+        return true;
     }
 
     public Card getCard() {

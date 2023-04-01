@@ -5,7 +5,7 @@ import com.bank.moneytransfer.entity.TransferRequest;
 
 public class Verifications {
 
-    public static boolean cardVerify(TransferRequest transfer, Card card){
+    public static boolean cardVerify(TransferRequest transfer, Card card) {
 
         if (transfer == null || card == null) {
             return false;
