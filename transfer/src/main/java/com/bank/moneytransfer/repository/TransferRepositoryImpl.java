@@ -36,23 +36,27 @@ public class TransferRepositoryImpl implements TransferRepository {
 
     @Override
     public Optional<Card> getCardByNumber(String cardNumber) {
+        synchronized (this.accounts) {
             if (this.accounts.containsKey(cardNumber)) {
                 return Optional.of(this.accounts.get(cardNumber).getCard());
             }
+        }
 
         return Optional.ofNullable(null);
     }
 
     @Override
     public Optional<Transaction> getTransactionByID(int id) {
-        if (this.transactions.containsKey(id)) {
-            return Optional.of(this.transactions.get(id));
+        synchronized (this.accounts) {
+            if (this.transactions.containsKey(id)) {
+                return Optional.of(this.transactions.get(id));
+            }
         }
         return Optional.ofNullable(null);
     }
 
     @Override
-    public synchronized boolean addAccount(Account newAccount) {
+    public boolean addAccount(Account newAccount) {
         if (newAccount != null) {
             this.accounts.put(newAccount.getCard().getCardNumber(), newAccount);
             return true;

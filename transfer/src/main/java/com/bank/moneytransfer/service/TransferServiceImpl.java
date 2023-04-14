@@ -1,9 +1,7 @@
 package com.bank.moneytransfer.service;
 
 import com.bank.moneytransfer.entity.*;
-import com.bank.moneytransfer.exception.InputDataException;
-import com.bank.moneytransfer.exception.TransactionConfirmOperationException;
-import com.bank.moneytransfer.exception.TransactionException;
+import com.bank.moneytransfer.exception.*;
 import com.bank.moneytransfer.logger.Logger;
 import com.bank.moneytransfer.logger.Loggers;
 import com.bank.moneytransfer.repository.TransferRepository;
@@ -50,9 +48,13 @@ public class TransferServiceImpl implements TransferService {
         final Optional<Card> cardTo = repository.getCardByNumber(newTransaction.getCardToNumber());
 
         // Check cards
-        if (cardFrom.isEmpty() || cardTo.isEmpty()) {
+        if (cardFrom.isEmpty()) {
             this.logger.log(newTransaction);
-            throw new TransactionException(newTransaction.getID(), "Any cord is not exist");
+            throw new SenderCardException(newTransaction.getID(), "Sender card is not exist");
+        }
+        if (cardTo.isEmpty()){
+            this.logger.log(newTransaction);
+            throw new RecipientCardException(newTransaction.getID(), "Recipient card is not exist");
         }
 
         final Card from = cardFrom.get();
@@ -62,14 +64,14 @@ public class TransferServiceImpl implements TransferService {
         final boolean verify = Verifications.cardVerify(transfer, from);
 
         if (!verify) {
-            throw new TransactionException(newTransaction.getID(), "Incorrect card data");
+            throw new CardDataException(newTransaction.getID(), "Invalid card data");
         }
 
         // Check amount of the card
         final int transferAmount = newTransaction.getAmount();
         if (!from.isAmount(transferAmount + newTransaction.getCommission())) {
             this.logger.log(newTransaction);
-            throw new TransactionException(newTransaction.getID(), "this amount is missing on the card");
+            throw new AmountException(newTransaction.getID(), "this amount is missing on the card");
         }
 
         // Money exchange

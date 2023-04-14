@@ -1,15 +1,9 @@
 package com.bank.moneytransfer.exception;
 
-public class TransactionConfirmOperationException extends RuntimeException {
-
-    private final int transactionID;
+public class TransactionConfirmOperationException extends TransactionException {
 
     public TransactionConfirmOperationException(int transactionID, String message) {
-        super(message);
-        this.transactionID = transactionID;
+        super(transactionID, message);
     }
 
-    public int getTransactionID() {
-        return transactionID;
-    }
 }

@@ -1,9 +1,6 @@
 package com.bank.moneytransfer.handler;
 
-import com.bank.moneytransfer.exception.InputDataException;
-import com.bank.moneytransfer.exception.TransactionConfirmOperationException;
-import com.bank.moneytransfer.exception.TransactionErrorMessage;
-import com.bank.moneytransfer.exception.TransactionException;
+import com.bank.moneytransfer.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,17 +13,58 @@ public class Advice {
 
     private Logger logger = Logger.getLogger("Advice_Logger");
 
-    @ExceptionHandler(TransactionException.class)
-    public ResponseEntity<TransactionErrorMessage> transferErrorMessage(TransactionException ex) {
+
+    @ExceptionHandler(SenderCardException.class)
+    public ResponseEntity<TransactionErrorMessage> senderCardNotExist(SenderCardException ex) {
 
         this.logger.info(ex.getMessage() + " transactionID: " + ex.getTransactionID());
 
         final TransactionErrorMessage message = new TransactionErrorMessage();
-        message.setMessage("SERVER ERROR");
+        message.setMessage("Sender card is not exist");
         message.setID(ex.getTransactionID());
 
         return new ResponseEntity<TransactionErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+    @ExceptionHandler(RecipientCardException.class)
+    public ResponseEntity<TransactionErrorMessage> recipientCardNotExist(RecipientCardException ex) {
+
+        this.logger.info(ex.getMessage() + " transactionID: " + ex.getTransactionID());
+
+        final TransactionErrorMessage message = new TransactionErrorMessage();
+        message.setMessage("Recipient card is not exist");
+        message.setID(ex.getTransactionID());
+
+        return new ResponseEntity<TransactionErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    @ExceptionHandler(CardDataException.class)
+    public ResponseEntity<TransactionErrorMessage> incorrectCardData(CardDataException ex) {
+
+        this.logger.info(ex.getMessage() + " transactionID: " + ex.getTransactionID());
+
+        final TransactionErrorMessage message = new TransactionErrorMessage();
+        message.setMessage("Invalid card data");
+        message.setID(ex.getTransactionID());
+
+        return new ResponseEntity<TransactionErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    @ExceptionHandler(AmountException.class)
+    public ResponseEntity<TransactionErrorMessage> invalidAmount(AmountException ex) {
+
+        this.logger.info(ex.getMessage() + " transactionID: " + ex.getTransactionID());
+
+        final TransactionErrorMessage message = new TransactionErrorMessage();
+        message.setMessage("This amount is missing on the card");
+        message.setID(ex.getTransactionID());
+
+        return new ResponseEntity<TransactionErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 
     @ExceptionHandler(InputDataException.class)
     public ResponseEntity<TransactionErrorMessage> inputDataErrorMessage(InputDataException ex) {
@@ -39,6 +77,7 @@ public class Advice {
 
         return new ResponseEntity<TransactionErrorMessage>(message, HttpStatus.BAD_REQUEST);
     }
+
 
     @ExceptionHandler(TransactionConfirmOperationException.class)
     public ResponseEntity<TransactionErrorMessage> confirmOperationErrorMessage(TransactionConfirmOperationException ex) {
